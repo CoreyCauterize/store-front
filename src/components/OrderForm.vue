@@ -71,7 +71,8 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('http://localhost:3030/products');
+        const PRODUCTS_API_URL = process.env.VUE_APP_ORDER_SERVICE_URL || 'http://localhost:3030/products';
+        const response = await fetch(PRODUCTS_API_URL);
         if (response.ok) {
           this.products = await response.json();
         } else {
@@ -89,7 +90,8 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/orders', {
+        const ORDERS_API_URL = process.env.VUE_APP_ORDER_SERVICE_URL || 'http://localhost:3000/orders';
+        const response = await fetch(ORDERS_API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
